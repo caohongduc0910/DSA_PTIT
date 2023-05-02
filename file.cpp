@@ -1,0 +1,43 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+typedef long long ll;
+#define pb push_back
+#define pf push_front
+#define fast_io ios_base::sync_with_stdio(false);cin.tie(NULL);cout.tie(NULL);
+
+int n, m;
+int cnt[5];
+int count(int b[], int x) {
+    if (x == 0) return 0;
+    if (x == 1) return cnt[0];
+    ll res = cnt[0] + cnt[1];
+    int l = (b + m) - upper_bound(b, b + m, x);
+    res += l;
+    if (x == 2) res -= (cnt[4] + cnt[3]);
+    if (x == 3) res += cnt[2];
+    return res;
+}
+
+int main() {
+    fast_io;
+    int t; cin >> t;
+    while (t--) {
+        cin >> n >> m;
+        int a[n], b[m];
+        memset(cnt, 0, sizeof(cnt));
+        for (int &x : a) cin >> x;
+        for (int &x : b) {
+            cin >> x;
+            if (x < 5) cnt[x]++;
+        }
+        sort(b, b + m);
+        ll ans = 0;
+        for (int i = 0; i < n; i++) {
+            ans += count(b, a[i]);
+        }
+        cout << ans << endl;
+    }
+    return 0;
+}
