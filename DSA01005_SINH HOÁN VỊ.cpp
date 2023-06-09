@@ -1,0 +1,26 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+typedef long long ll;
+#define pb push_back
+#define pf push_front
+#define fast_io ios_base::sync_with_stdio(false);cin.tie(NULL);cout.tie(NULL)
+
+int main() {
+    fast_io;
+    int t; cin >> t;
+    while (t--) {
+        int n; cin >> n;
+        int a[n];
+        for (int i = 0; i < n; i++) a[i] = i + 1;
+        for (int i = 0; i < n; i++) cout << a[i];
+        cout << ' ';
+        while (next_permutation(a, a + n)) {
+            for (int i = 0; i < n; i++) cout << a[i];
+            cout << ' ';
+        }
+        cout << endl;
+    }
+    return 0;
+}
